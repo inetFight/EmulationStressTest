@@ -1,0 +1,64 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="MSG">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="HEADER">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="HDSDID"/>
+              <xs:element type="xs:string" name="HDRCID"/>
+              <xs:element type="xs:string" name="HDMGTP"/>
+              <xs:element type="xs:string" name="HDMGID"/>
+              <xs:element type="xs:string" name="HDEVTM"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="BODY">
+          <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+              <xs:element type="xs:string" name="HPIC"/>
+              <xs:element name="PIB">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="RDID"/>
+                    <xs:element type="xs:string" name="RDST"/>
+                    <xs:element type="xs:string" name="CDTP"/>
+                    <xs:element type="xs:string" name="CDDT"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="PAB">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="CID"/>
+                    <xs:element type="xs:string" name="DDWE"/>
+                    <xs:element type="xs:string" name="LE"/>
+                    <xs:element type="xs:string" name="WI"/>
+                    <xs:element type="xs:string" name="HE"/>
+                    <xs:element type="xs:string" name="VO"/>
+                    <xs:element type="xs:string" name="ET"/>
+                    <xs:element type="xs:string" name="IU"/>
+                    <xs:element type="xs:string" name="IT"/>
+                    <xs:element type="xs:string" name="TR"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element type="xs:string" name="DID" maxOccurs="unbounded" minOccurs="0"/>
+              <xs:element type="xs:string" name="DSTAT"/>
+              <xs:element name="SRB">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="DID"/>
+                    <xs:element type="xs:string" name="DRID"/>
+                    <xs:element type="xs:string" name="DRSID"/>
+                    <xs:element type="xs:string" name="ET"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:choice>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
