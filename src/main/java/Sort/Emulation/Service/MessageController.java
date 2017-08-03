@@ -35,7 +35,7 @@ public class MessageController implements MessageListener {
 				try {
 
 					TextMessage textMessage = (TextMessage) message;
-
+					
 					/*Gui.receiverLog
 							.append("\n----------------------------------------Принятое сообщение---------------------------------------\n"
 									+ textMessage.getText()
