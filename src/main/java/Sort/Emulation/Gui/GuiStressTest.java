@@ -142,7 +142,7 @@ public class GuiStressTest {
 						if(element.getBarcode4() != null) toSend.add(element.getBarcode4());
 						if(element.getBarcode5() != null) toSend.add(element.getBarcode5());
 						try {
-							SORTREQ.sendSortreq(toSend, data, element);
+							SORTREQ.sendSortreq(toSend, element);
 						} catch (JAXBException e) {						
 							e.printStackTrace();
 						}					
