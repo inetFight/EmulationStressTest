@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import Sort.Emulation.Gui.GuiStressTest;
 import Sort.Emulation.Model.RootElementLogicModel;
 
 public class ReadFile {
@@ -65,6 +66,7 @@ public class ReadFile {
 				}
 			}
 		}
+		GuiStressTest.end.setText("" + cnt);
 //		 System.out.println("В файле найдено " + cnt + " номеров ЕН");
 		return tmp;
 	}

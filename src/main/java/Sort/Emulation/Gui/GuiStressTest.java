@@ -55,6 +55,8 @@ public class GuiStressTest {
 	public static JTable table;
 	public static DefaultTableModel dtm;
 	Thread t;
+	public static JLabel go;
+	public static JLabel end;
 
 	/**
 	 * Launch the application.
@@ -154,6 +156,7 @@ public class GuiStressTest {
 						public void run() {
 							start.setEnabled(false);
 							stop.setEnabled(true);
+							int cnt = 0;
 					for (final RootElementLogicModel element : barcodes) {
 						toSend= new ArrayList<String>();
 						if(element.getBarcode1() != null) toSend.add(element.getBarcode1());
@@ -164,6 +167,7 @@ public class GuiStressTest {
 						
 						try {
 							SORTREQ.sendSortreq(toSend, element);
+							cnt+=1;
 							Thread.sleep(Long.valueOf(intervalValue.getText()));
 						} catch (JAXBException e) {						
 							e.printStackTrace();
@@ -174,7 +178,8 @@ public class GuiStressTest {
 						}
 													
 								
-						toSend.clear();		
+						toSend.clear();
+						go.setText("" + cnt);
 						}
 						start.setEnabled(true);
 						
@@ -231,6 +236,30 @@ public class GuiStressTest {
 		});
 		stop.setBounds(214, 86, 165, 32);
 		panel.add(stop);
+		
+		go = new JLabel("нет данных");
+		go.setHorizontalAlignment(SwingConstants.CENTER);
+		go.setBounds(393, 24, 165, 32);
+		panel.add(go);
+		
+		end = new JLabel("нет данных");
+		end.setHorizontalAlignment(SwingConstants.CENTER);
+		end.setBounds(393, 72, 165, 32);
+		panel.add(end);
+		
+		JLabel label = new JLabel("из");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setBounds(452, 57, 46, 14);
+		panel.add(label);
+		
+		JButton button = new JButton("Очистить");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dtm.setRowCount(0);
+			}
+		});
+		button.setBounds(1251, 108, 89, 23);
+		panel.add(button);
 		
 		
 	}
