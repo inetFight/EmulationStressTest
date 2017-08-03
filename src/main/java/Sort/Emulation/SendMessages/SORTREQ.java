@@ -2,15 +2,22 @@ package Sort.Emulation.SendMessages;
 
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.TimerTask;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+
+import Sort.Emulation.Gui.GuiStressTest;
 import Sort.Emulation.Helpers.HpicGenerator;
 import Sort.Emulation.Helpers.MessageIdGenerator;
 import Sort.Emulation.Helpers.SendsMessageHPIC_TimeControll;
 import Sort.Emulation.Helpers.SendsMessagesTimeController;
 import Sort.Emulation.Helpers.TimeStamp;
+import Sort.Emulation.Model.RootElementLogicModel;
 import Sort.Emulation.Models.FromXSD.MSG;
 import Sort.Emulation.Models.FromXSD.ObjectFactory;
 import Sort.Emulation.Models.FromXSD.MSG.HEADER;
@@ -21,8 +28,9 @@ import Sort.Emulation.Service.Sender;
 
 public class SORTREQ {
 
-	public static void sendSortreq(final ArrayList<String> barcode) throws JAXBException {
-
+	public static void sendSortreq(final ArrayList<String> barcode, final RootElementLogicModel element) throws JAXBException {
+		
+		
 		new Thread() {
 			public void run() {
 
@@ -30,7 +38,6 @@ public class SORTREQ {
 					Sender sendMessage = new Sender();
 
 					ObjectFactory factory = new ObjectFactory();
-
 					MSG msg = new MSG();
 					HEADER header = new HEADER();
 					BODY body = new BODY();
@@ -81,7 +88,10 @@ public class SORTREQ {
 					jaxbMarshaller.setProperty(Marshaller.JAXB_FRAGMENT, true);
 					jaxbMarshaller.marshal(msg, sw);
 					String xmlMessage = sw.toString();
+					element.setSORTREQTIME(new Date());
+					GuiStressTest.data.put(HPIC, element);
 					sendMessage.sendMessage(xmlMessage);
+					
 				} catch (Exception e) {
 					System.err.println(e.getMessage());
 				}
@@ -89,4 +99,6 @@ public class SORTREQ {
 		}.start();
 
 	}
+
+	
 }

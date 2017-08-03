@@ -2,10 +2,14 @@ package Sort.Emulation.SendMessages;
 
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Date;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+
+import Sort.Emulation.Gui.GuiStressTest;
 import Sort.Emulation.Helpers.HpicGenerator;
 import Sort.Emulation.Helpers.MessageIdGenerator;
 import Sort.Emulation.Helpers.TimeStamp;
@@ -88,6 +92,7 @@ public class SORTRPT {
 					jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 					jaxbMarshaller.setProperty(Marshaller.JAXB_FRAGMENT, true);
 					jaxbMarshaller.marshal(msg, sw);
+					GuiStressTest.data.get(HPIC).setSORTRPTTIME(new Date());
 					String xmlMessage = sw.toString();
 					sendMessage.sendMessage(xmlMessage);
 				} catch (Exception e) {

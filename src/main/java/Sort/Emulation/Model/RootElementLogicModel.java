@@ -1,11 +1,18 @@
 package Sort.Emulation.Model;
 
+import java.util.Date;
+
 public class RootElementLogicModel {
-	public String barcode1;
-	public String barcode2;
-	public String barcode3;
-	public String barcode4;
-	public String barcode5;
+	private String barcode1;
+	private String barcode2;
+	private String barcode3;
+	private String barcode4;
+	private String barcode5;
+	private Date SORTREQTIME;
+	private Date SORTRPLTIME;
+	private Date SORTRPTTIME;
+	private Date SORTACKTIME;
+	
 	
 	
 	public RootElementLogicModel(String barcode1) {
@@ -75,6 +82,46 @@ public class RootElementLogicModel {
 	}
 	public void setBarcode5(String barcode5) {
 		this.barcode5 = barcode5;
+	}
+
+
+	public Date getSORTREQTIME() {
+		return SORTREQTIME;
+	}
+
+
+	public void setSORTREQTIME(Date sORTREQTIME) {
+		SORTREQTIME = sORTREQTIME;
+	}
+
+
+	public Date getSORTRPLTIME() {
+		return SORTRPLTIME;
+	}
+
+
+	public void setSORTRPLTIME(Date sORTRPLTIME) {
+		SORTRPLTIME = sORTRPLTIME;
+	}
+
+
+	public Date getSORTRPTTIME() {
+		return SORTRPTTIME;
+	}
+
+
+	public void setSORTRPTTIME(Date sORTRPTTIME) {
+		SORTRPTTIME = sORTRPTTIME;
+	}
+
+
+	public Date getSORTACKTIME() {
+		return SORTACKTIME;
+	}
+
+
+	public void setSORTACKTIME(Date sORTACKTIME) {
+		SORTACKTIME = sORTACKTIME;
 	}
 	
 }

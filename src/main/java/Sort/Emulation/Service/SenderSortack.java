@@ -9,7 +9,7 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
-import Sort.Emulation.Gui.Gui;
+// import Sort.Emulation.Gui.Gui;
 
 public class SenderSortack {
 
@@ -29,7 +29,7 @@ public class SenderSortack {
 			factory = new ActiveMQConnectionFactory("tcp://10.13.188.176:61616");
 			connection = factory.createConnection();
 			connection.start();
-			Gui.sendConnectStatus.setText("<html><font color=\"Green\"><b>ОК</b></<font></html>");
+//			Gui.sendConnectStatus.setText("<html><font color=\"Green\"><b>ОК</b></<font></html>");
 			session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 			destination = session.createQueue("MQ.NP.MFCHOST.01");
 			producer = session.createProducer(destination);
@@ -37,14 +37,14 @@ public class SenderSortack {
 			message.setText(messageToSend);
 			producer.send(message);
 
-			Gui.sendsSortackLog.append("\n------------------------Отправленное сообщение------------------------\n"
+/*			Gui.sendsSortackLog.append("\n------------------------Отправленное сообщение------------------------\n"
 					+ message.getText() + "\n--------------------Конец отправленного сообщения-------------------\n");
-
+*/
 			session.close();
 			connection.close();
 
 		} catch (JMSException e) {
-			Gui.sendConnectStatus.setText("<html><font color=\"Red\"><b>Нет соединения</b></<font></html>");
+//			Gui.sendConnectStatus.setText("<html><font color=\"Red\"><b>Нет соединения</b></<font></html>");
 			System.out.println(e.getMessage());
 		}
 	}

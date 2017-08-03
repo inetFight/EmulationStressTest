@@ -1,12 +1,14 @@
 package Sort.Emulation.ReceivedMessages;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 
-import Sort.Emulation.Gui.Gui;
+import Sort.Emulation.Gui.GuiStressTest;
+// import Sort.Emulation.Gui.Gui;
 import Sort.Emulation.Helpers.SendsMessageHPIC_TimeControll;
 import Sort.Emulation.Helpers.SendsMessagesTimeController;
 import Sort.Emulation.Models.FromXSD.MSG;
@@ -28,6 +30,7 @@ public class SORTRPL {
 		for (JAXBElement<?> element : body.getHPICOrPIBOrPAB()) {
 			if(element.getName().toString().equals("HPIC")){
 				HPIC = (String) element.getValue();
+				GuiStressTest.data.get(HPIC).setSORTRPLTIME(new Date());
 			}
 			if(element.getName().toString().equals("CDDT")){
 				CDDT = (String) element.getValue();
@@ -44,7 +47,7 @@ public class SORTRPL {
 		else {
 			sec=" сек";
 			}
-		Gui.labelToTimeText.setText(time + sec);
+//		Gui.labelToTimeText.setText(time + sec);
 		String DID = DIDArray.get(0);
 		
 		SORTRPT.sendSortrpt(HPIC, CDDT, DID);

@@ -9,16 +9,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Timer;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.xml.bind.JAXBException;
 
 import Sort.Emulation.Helpers.ReadFile;
 import Sort.Emulation.Helpers.SwingUtils;
 import Sort.Emulation.Model.RootElementLogicModel;
+import Sort.Emulation.SendMessages.HEARTBEAT;
+import Sort.Emulation.SendMessages.SORTREQ;
 
 import javax.swing.AbstractButton;
 import javax.swing.JButton;
@@ -38,6 +43,8 @@ public class GuiStressTest {
 	static String file_path_open;
 	private JTextField intervalValue;
 	public static ArrayList<RootElementLogicModel> barcodes;
+	public static HashMap<String, RootElementLogicModel> data = new HashMap<String, RootElementLogicModel>();
+	public static ArrayList<String> toSend;
 
 	/**
 	 * Launch the application.
@@ -82,6 +89,18 @@ public class GuiStressTest {
 		OpenFileLabel.setBounds(188, 11, 144, 32);
 		panel.add(OpenFileLabel);
 		
+		JLabel interval = new JLabel("Интервал (ms)");
+		interval.setHorizontalAlignment(SwingConstants.CENTER);
+		interval.setBounds(23, 55, 100, 18);
+		panel.add(interval);
+		
+		intervalValue = new JTextField();
+		intervalValue.setHorizontalAlignment(SwingConstants.CENTER);
+		intervalValue.setText("300");
+		intervalValue.setBounds(125, 54, 63, 20);
+		panel.add(intervalValue);
+		intervalValue.setColumns(10);
+		
 		final JButton buttonFile = new JButton("Выбрать файл");
 		buttonFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -97,7 +116,7 @@ public class GuiStressTest {
                     OpenFileLabel.setText(file.getName());
                     
                     file_path_open = file.getAbsolutePath();
-                    
+                    barcodes = ReadFile.readFileToListByLine(file_path_open);
                    
                     
                 }
@@ -106,27 +125,7 @@ public class GuiStressTest {
 		buttonFile.setBounds(23, 11, 165, 32);
 		panel.add(buttonFile);
 		
-		JButton load = new JButton("Load");
-		load.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				barcodes.clear();
-				barcodes = ReadFile.readFileToListByLine(file_path_open);
-			}
-		});
-		load.setBounds(342, 11, 88, 32);
-		panel.add(load);
 		
-		JLabel interval = new JLabel("Интервал (ms)");
-		interval.setHorizontalAlignment(SwingConstants.CENTER);
-		interval.setBounds(23, 55, 100, 18);
-		panel.add(interval);
-		
-		intervalValue = new JTextField();
-		intervalValue.setHorizontalAlignment(SwingConstants.CENTER);
-		intervalValue.setText("300");
-		intervalValue.setBounds(125, 54, 63, 20);
-		panel.add(intervalValue);
-		intervalValue.setColumns(10);
 		
 		JButton start = new JButton("СТАРТ");
 		start.addActionListener(new ActionListener() {
@@ -135,6 +134,27 @@ public class GuiStressTest {
 					JOptionPane.showMessageDialog(panel, "Некорректный интервал", "Ошибка", JOptionPane.ERROR_MESSAGE);
 				}
 				else {
+					for (RootElementLogicModel element : barcodes) {
+						toSend= new ArrayList<String>();
+						if(element.getBarcode1() != null) toSend.add(element.getBarcode1());
+						if(element.getBarcode2() != null) toSend.add(element.getBarcode2());
+						if(element.getBarcode3() != null) toSend.add(element.getBarcode3());
+						if(element.getBarcode4() != null) toSend.add(element.getBarcode4());
+						if(element.getBarcode5() != null) toSend.add(element.getBarcode5());
+						try {
+							SORTREQ.sendSortreq(toSend, data, element);
+						} catch (JAXBException e) {						
+							e.printStackTrace();
+						}					
+						try {
+							Thread.sleep(Long.valueOf(intervalValue.getText()));
+						} catch (NumberFormatException e) {						
+							e.printStackTrace();
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						toSend.clear();
+					}
 					
 					
 				}

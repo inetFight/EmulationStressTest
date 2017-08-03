@@ -16,7 +16,7 @@ import javax.xml.bind.Unmarshaller;
 
 import org.springframework.beans.propertyeditors.CurrencyEditor;
 
-import Sort.Emulation.Gui.Gui;
+// import Sort.Emulation.Gui.Gui;
 import Sort.Emulation.Models.FromXSD.MSG;
 import Sort.Emulation.Models.FromXSD.MSG.BODY;
 import Sort.Emulation.Models.FromXSD.MSG.BODY.PAB;
@@ -36,11 +36,11 @@ public class MessageController implements MessageListener {
 
 					TextMessage textMessage = (TextMessage) message;
 
-					Gui.receiverLog
+					/*Gui.receiverLog
 							.append("\n----------------------------------------Принятое сообщение---------------------------------------\n"
 									+ textMessage.getText()
 									+ "\n-----------------------------------Конец принятого сообщения----------------------------------\n");
-
+*/
 					StringReader reader = new StringReader(textMessage.getText());
 					JAXBContext jaxbContext = JAXBContext.newInstance(ObjectFactory.class);
 					Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();

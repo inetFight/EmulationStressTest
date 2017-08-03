@@ -29,7 +29,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Rectangle;
-
+/*
 public class Gui {
 
 	private JFrame frm;
@@ -46,9 +46,7 @@ public class Gui {
 	public static JLabel sendConnectStatus;
 	public static JLabel receiverConnectStatus;
 
-	/**
-	 * Launch the application.
-	 */
+
 	public static void main(String[] args) {
 
 		EventQueue.invokeLater(new Runnable() {
@@ -69,19 +67,14 @@ public class Gui {
 
 	}
 
-	/**
-	 * Create the application.
-	 * 
-	 */
+
 	public Gui() {
 
 		initialize();
 
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+
 	private void initialize() {
 		final ArrayList<String> barcodes = new ArrayList<String>();
 
@@ -321,4 +314,6 @@ public class Gui {
 		receiverConnectStatus.setBounds(1250, 17, 102, 20);
 		panel.add(receiverConnectStatus);
 	}
+	
 }
+*/
