@@ -2,24 +2,19 @@ package Sort.Emulation.Gui;
 
 import java.awt.EventQueue;
 import java.awt.Toolkit;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.xml.bind.JAXBException;
-
 import Sort.Emulation.SendMessages.HEARTBEAT;
 import Sort.Emulation.SendMessages.SORTREQ;
 import Sort.Emulation.Service.Receiver;
-
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
