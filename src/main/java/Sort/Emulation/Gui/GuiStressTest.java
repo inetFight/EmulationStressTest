@@ -62,7 +62,7 @@ public class GuiStressTest {
 	Thread t;
 	public static JLabel go;
 	public static JLabel end;
-
+   
 	/**
 	 * Launch the application.
 	 */
