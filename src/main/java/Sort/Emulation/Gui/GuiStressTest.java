@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Timer;
 
 import javax.swing.JFrame;
@@ -35,9 +36,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import javax.swing.border.LineBorder;
 
 public class GuiStressTest {
@@ -216,14 +221,22 @@ public class GuiStressTest {
 		dtm.setColumnIdentifiers(headers);
 		table.setModel(dtm);
 		table.setGridColor(Color.BLACK);
-		table.setBorder(new LineBorder(new Color(0, 0, 0)));
-		
+		table.setBorder(new LineBorder(new Color(0, 0, 0)));		
 		table.setPreferredScrollableViewportSize(new Dimension(1330, 500));
-		JScrollPane scrollPane = new JScrollPane(table);
-		
+		table.setAutoCreateRowSorter(true);
+		JScrollPane scrollPane = new JScrollPane(table);		
 		scrollPane.setBackground(Color.WHITE);
-
+/*		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
+		table.setRowSorter(sorter);
+		List<RowSorter.SortKey> sortKeys = new ArrayList<>();
+		sortKeys.add(new RowSorter.SortKey(6, SortOrder.ASCENDING));
+		sortKeys.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
+		sorter.setSortKeys(sortKeys);
+*/
 		tablepanel.add(scrollPane);
+		
+		
+		
 		
 		stop.setEnabled(false);
 		stop.addActionListener(new ActionListener() {

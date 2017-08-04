@@ -1,6 +1,7 @@
 package Sort.Emulation.SendMessages;
 
 import java.io.StringWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -92,7 +93,9 @@ public class SORTRPT {
 					jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 					jaxbMarshaller.setProperty(Marshaller.JAXB_FRAGMENT, true);
 					jaxbMarshaller.marshal(msg, sw);
-					GuiStressTest.data.get(HPIC).setSORTRPTTIME(new Date());
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss,SSSXXX");
+					Date date = sdf.parse(header.getHDEVTM()); 
+					GuiStressTest.data.get(HPIC).setSORTRPTTIME(date);
 					String xmlMessage = sw.toString();
 					sendMessage.sendMessage(xmlMessage);
 				} catch (Exception e) {

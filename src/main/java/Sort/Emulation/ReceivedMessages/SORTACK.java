@@ -30,6 +30,7 @@ public class SORTACK {
 			
 		}
 		SimpleDateFormat format = new SimpleDateFormat("mm:ss,SSS");
+
 		Object [] row = {
 				HPIC,
 				GuiStressTest.data.get(HPIC).getBarcode1(),
@@ -39,10 +40,10 @@ public class SORTACK {
 				GuiStressTest.data.get(HPIC).getBarcode5(),
 				format.format(GuiStressTest.data.get(HPIC).getSORTREQTIME()),
 				format.format(GuiStressTest.data.get(HPIC).getSORTRPLTIME()),
-				GuiStressTest.data.get(HPIC).getSORTRPLTIME().getTime() - GuiStressTest.data.get(HPIC).getSORTREQTIME().getTime(),
+				(GuiStressTest.data.get(HPIC).getSORTRPLTIME().getTime() + 3600000) - GuiStressTest.data.get(HPIC).getSORTREQTIME().getTime(),
 				format.format(GuiStressTest.data.get(HPIC).getSORTRPTTIME()),
 				format.format(GuiStressTest.data.get(HPIC).getSORTACKTIME()),
-				GuiStressTest.data.get(HPIC).getSORTACKTIME().getTime() - GuiStressTest.data.get(HPIC).getSORTRPTTIME().getTime()
+				(GuiStressTest.data.get(HPIC).getSORTACKTIME().getTime() + 3600000) - GuiStressTest.data.get(HPIC).getSORTRPTTIME().getTime()
 						};
 		GuiStressTest.dtm.addRow(row);
 		GuiStressTest.table.scrollRectToVisible(new Rectangle(0, GuiStressTest.table.getHeight() - 1, GuiStressTest.table.getWidth(), 1));

@@ -1,6 +1,7 @@
 package Sort.Emulation.SendMessages;
 
 import java.io.StringWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -88,7 +89,9 @@ public class SORTREQ {
 					jaxbMarshaller.setProperty(Marshaller.JAXB_FRAGMENT, true);
 					jaxbMarshaller.marshal(msg, sw);
 					String xmlMessage = sw.toString();
-					element.setSORTREQTIME(new Date());
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss,SSSXXX");
+					Date date = sdf.parse(header.getHDEVTM()); 
+					element.setSORTREQTIME(date);
 					GuiStressTest.data.put(HPIC, element);
 					sendMessage.sendMessage(xmlMessage);
 					
