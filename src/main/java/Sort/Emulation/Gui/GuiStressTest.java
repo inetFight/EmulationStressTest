@@ -158,7 +158,7 @@ public class GuiStressTest {
 							stop.setEnabled(true);
 							int cnt = 0;
 					for (final RootElementLogicModel element : barcodes) {
-						toSend= new ArrayList<String>();
+						toSend = new ArrayList<String>();
 						if(element.getBarcode1() != null) toSend.add(element.getBarcode1());
 						if(element.getBarcode2() != null) toSend.add(element.getBarcode2());
 						if(element.getBarcode3() != null) toSend.add(element.getBarcode3());
@@ -193,7 +193,7 @@ public class GuiStressTest {
 		
 		JPanel tablepanel = new JPanel();
 		tablepanel.setBackground(Color.WHITE);
-		tablepanel.setBounds(0, 142, 1350, 531);
+		tablepanel.setBounds(0, 142, 1350, 542);
 		panel.add(tablepanel);
 		
 		Object[] headers = {
@@ -218,7 +218,7 @@ public class GuiStressTest {
 		table.setGridColor(Color.BLACK);
 		table.setBorder(new LineBorder(new Color(0, 0, 0)));
 		
-		table.setPreferredScrollableViewportSize(new Dimension(1330, 531));
+		table.setPreferredScrollableViewportSize(new Dimension(1330, 500));
 		JScrollPane scrollPane = new JScrollPane(table);
 		
 		scrollPane.setBackground(Color.WHITE);
