@@ -169,19 +169,22 @@ public class GuiStressTest {
 						if(element.getBarcode3() != null) toSend.add(element.getBarcode3());
 						if(element.getBarcode4() != null) toSend.add(element.getBarcode4());
 						if(element.getBarcode5() != null) toSend.add(element.getBarcode5());
-						
 						try {
-							SORTREQ.sendSortreq(toSend, element);
-							cnt+=1;
 							Thread.sleep(Long.valueOf(intervalValue.getText()));
-						} catch (JAXBException e) {						
-							e.printStackTrace();
-						} catch (NumberFormatException e) {
-							e.printStackTrace();
-						} catch (InterruptedException e) {
-							e.printStackTrace();
+						} catch (NumberFormatException | InterruptedException e1) {
+							e1.printStackTrace();
 						}
-													
+						new Thread() {
+							public void run() {
+								try {
+									SORTREQ.sendSortreq(toSend, element);
+								} catch (JAXBException e) {
+									e.printStackTrace();
+								}
+							}}.start();
+					
+							
+							cnt+=1;
 								
 						toSend.clear();
 						go.setText("" + cnt);
