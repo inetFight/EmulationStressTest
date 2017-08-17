@@ -43,7 +43,8 @@ public class SORTACK {
 				(GuiStressTest.data.get(HPIC).getSORTRPLTIME().getTime() + 3600000) - GuiStressTest.data.get(HPIC).getSORTREQTIME().getTime(),
 				format.format(GuiStressTest.data.get(HPIC).getSORTRPTTIME()),
 				format.format(GuiStressTest.data.get(HPIC).getSORTACKTIME()),
-				(GuiStressTest.data.get(HPIC).getSORTACKTIME().getTime() + 3600000) - GuiStressTest.data.get(HPIC).getSORTRPTTIME().getTime()
+				(GuiStressTest.data.get(HPIC).getSORTACKTIME().getTime() + 3600000) - GuiStressTest.data.get(HPIC).getSORTRPTTIME().getTime(),
+				GuiStressTest.data.get(HPIC).getDID()
 						};
 		GuiStressTest.dtm.addRow(row);
 		GuiStressTest.table.scrollRectToVisible(new Rectangle(0, GuiStressTest.table.getHeight() - 1, GuiStressTest.table.getWidth(), 1));

@@ -12,6 +12,7 @@ public class RootElementLogicModel {
 	private Date SORTRPLTIME;
 	private Date SORTRPTTIME;
 	private Date SORTACKTIME;
+	private String DID;
 	
 	
 	
@@ -122,6 +123,16 @@ public class RootElementLogicModel {
 
 	public void setSORTACKTIME(Date sORTACKTIME) {
 		SORTACKTIME = sORTACKTIME;
+	}
+
+
+	public String getDID() {
+		return DID;
+	}
+
+
+	public void setDID(String dID) {
+		DID = dID;
 	}
 	
 }

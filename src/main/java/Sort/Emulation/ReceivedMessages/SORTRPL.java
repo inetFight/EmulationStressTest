@@ -39,6 +39,7 @@ public class SORTRPL {
 				DIDArray.add((String) element.getValue());
 			}
 		}
+		GuiStressTest.data.get(HPIC).setDID(DIDArray.get(0));
 		String time = SendsMessageHPIC_TimeControll.getTimeResponseMessage(HPIC);
 		String sec; 
 		if(time.equals("Нет HPIC")){

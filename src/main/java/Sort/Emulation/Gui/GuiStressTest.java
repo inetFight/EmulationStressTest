@@ -216,7 +216,8 @@ public class GuiStressTest {
 				"REQ_RPL_TIME", 
 				"SORTRPT_TIME", 
 				"SORTRPL_TIME", 
-				"RPT_RPL_TIME"
+				"RPT_RPL_TIME",
+				"PORT"
 			};
 
 		table = new JTable();
