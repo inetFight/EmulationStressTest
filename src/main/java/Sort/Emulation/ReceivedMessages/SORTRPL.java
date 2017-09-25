@@ -13,6 +13,7 @@ import Sort.Emulation.Helpers.SendsMessageHPIC_TimeControll;
 import Sort.Emulation.Helpers.SendsMessagesTimeController;
 import Sort.Emulation.Models.FromXSD.MSG;
 import Sort.Emulation.Models.FromXSD.MSG.BODY;
+import Sort.Emulation.Models.FromXSD.MSG.BODY.PIB;
 import Sort.Emulation.Models.FromXSD.MSG.HEADER;
 import Sort.Emulation.SendMessages.SORTRPT;
 
@@ -28,12 +29,14 @@ public class SORTRPL {
 		
 //		System.out.println("Время определения порта сброса " + SendsMessagesT*imeController.getTimeResponseMessage(head.getHDMGID()) + " секунд");
 		for (JAXBElement<?> element : body.getHPICOrPIBOrPAB()) {
+			
 			if(element.getName().toString().equals("HPIC")){
 				HPIC = (String) element.getValue();
 				GuiStressTest.data.get(HPIC).setSORTRPLTIME(new Date());
 			}
-			if(element.getName().toString().equals("CDDT")){
-				CDDT = (String) element.getValue();
+			if(element.getName().toString().equals("PIB")){
+				PIB pib = (PIB) element.getValue();
+				CDDT = pib.getCDDT();
 			}
 			if(element.getName().toString().equals("DID")){
 				DIDArray.add((String) element.getValue());

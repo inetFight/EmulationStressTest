@@ -161,7 +161,7 @@ public class GuiStressTest {
 						public void run() {
 							start.setEnabled(false);
 							stop.setEnabled(true);
-							int cnt = 0;
+							int cnt = 0;								
 					for (final RootElementLogicModel element : barcodes) {
 						toSend = new ArrayList<String>();
 						if(element.getBarcode1() != null) toSend.add(element.getBarcode1());
@@ -169,6 +169,7 @@ public class GuiStressTest {
 						if(element.getBarcode3() != null) toSend.add(element.getBarcode3());
 						if(element.getBarcode4() != null) toSend.add(element.getBarcode4());
 						if(element.getBarcode5() != null) toSend.add(element.getBarcode5());
+						
 						try {
 							Thread.sleep(Long.valueOf(intervalValue.getText()));
 						} catch (NumberFormatException | InterruptedException e1) {
@@ -186,7 +187,7 @@ public class GuiStressTest {
 							
 							cnt+=1;
 								
-						toSend.clear();
+						//toSend.clear();
 						go.setText("" + cnt);
 						}
 						start.setEnabled(true);

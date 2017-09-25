@@ -55,7 +55,7 @@ public class SORTREQ {
 					SendsMessageHPIC_TimeControll.addHPICId(HPIC);
 					JAXBElement<String> hpicJAX = factory.createMSGBODYHPIC(HPIC);
 					body.getHPICOrPIBOrPAB().add(hpicJAX);
-
+				
 					for (String code : barcode) {
 						PIB pib = new PIB();
 						pib.setRDID("CC_IC01_01");

@@ -29,7 +29,7 @@ import Sort.Emulation.ReceivedMessages.SORTRPL;
 public class MessageController implements MessageListener {
 
 	public void onMessage(final Message message) {
-
+		
 		new Thread() {
 			public void run() {
 				try {
